@@ -2,7 +2,7 @@
 extends EditorPlugin
 
 # UI Components
-var import_button
+var control: Control
 var file_dialog
 var selected_directory = ""
 
@@ -17,27 +17,39 @@ func _exit_tree():
 	remove_custom_control()
 
 func create_custom_interface():
+	control = Control.new()
+	control.name = "Import Anim"
+	
 	# Create a file dialog to select directories
-	file_dialog = FileDialog.new()
+	var file_dialog = FileDialog.new()
 	file_dialog.mode = FileDialog.FILE_MODE_OPEN_DIR
-	file_dialog.connect("dir_selected", self, "_on_directory_selected")
-	add_child(file_dialog)
+	file_dialog.connect("dir_selected", _on_directory_selected)
+	control.add_child(file_dialog)
+	
+	var select_folder_button = Button.new()
+	select_folder_button.text = "Select Folder"
+	select_folder_button.connect("pressed", _on_select_folder_pressed)
+	control.add_child(select_folder_button)
 	
 	# Create an import button
-	import_button = Button.new()
+	var import_button = Button.new()
 	import_button.text = "Import Animations"
-	import_button.connect("pressed", self, "_on_import_button_pressed")
-	add_control_to_dock(DOCK_SLOT_RIGHT_UL, import_button)
+	import_button.connect("pressed", _on_import_button_pressed)
+	control.add_child(import_button)
+	print("Added import UI")
+	add_control_to_dock(DOCK_SLOT_RIGHT_UL, control)
 
 func remove_custom_control():
-	remove_control_from_docks(import_button)
-	file_dialog.queue_free()
-	import_button.queue_free()
+	remove_control_from_docks(control)
+	control.queue_free()
 
 # Called when the user selects a directory
 func _on_directory_selected(directory):
 	selected_directory = directory
 	print("Selected directory: " + selected_directory)
+	
+func _on_select_folder_pressed():
+	control.get_child(0).show()
 
 # Called when the import button is pressed
 func _on_import_button_pressed():
