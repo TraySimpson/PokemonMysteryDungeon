@@ -59,8 +59,8 @@ animations = [{
 "speed": 15.0
 }]
 
-[node name="Node2D" type="AnimatedSprite2D"]
+[node name="Player" type="AnimatedSprite2D"]
 sprite_frames = SubResource("SpriteFrames_j3jhk")
 animation = &"walk_down"
 autoplay = "walk_down"
-frame_progress = 0.632697
+frame_progress = 0.122991
