@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://ck7vq6yvgqhjd"]
+
+[ext_resource type="Script" path="res://dungeon_terrain.gd" id="1_eqt8f"]
+
+[node name="DungeonTerrain" type="Node2D"]
+script = ExtResource("1_eqt8f")
+
+[node name="GroundLayer" type="TileMapLayer" parent="."]

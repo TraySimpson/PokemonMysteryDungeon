@@ -1,8 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://eapymf3l1176"]
+[gd_scene load_steps=4 format=3 uid="uid://eapymf3l1176"]
 
 [ext_resource type="PackedScene" uid="uid://btmgi605bpqe4" path="res://player.tscn" id="1_5uesi"]
+[ext_resource type="PackedScene" uid="uid://ck7vq6yvgqhjd" path="res://dungeon_terrain.tscn" id="2_u313e"]
+[ext_resource type="TileSet" uid="uid://fjvtp23qd8vb" path="res://graphics/tilesets/tiny-woods.tres" id="2_xmb30"]
 
 [node name="Main" type="Node2D"]
 
-[node name="Node2D" parent="." instance=ExtResource("1_5uesi")]
+[node name="Player" parent="." instance=ExtResource("1_5uesi")]
+visible = false
 position = Vector2(526, 319)
+
+[node name="DungeonTerrain" parent="." instance=ExtResource("2_u313e")]
+tileset = ExtResource("2_xmb30")
