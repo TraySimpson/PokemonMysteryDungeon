@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://btmgi605bpqe4" path="res://player.tscn" id="1_5uesi"]
 [ext_resource type="PackedScene" uid="uid://ck7vq6yvgqhjd" path="res://dungeon_terrain.tscn" id="2_u313e"]
-[ext_resource type="TileSet" uid="uid://fjvtp23qd8vb" path="res://graphics/tilesets/tiny-woods.tres" id="2_xmb30"]
+[ext_resource type="TileSet" uid="uid://higglbs5r0ep" path="res://graphics/tilesets/tiny-woods.tres" id="2_xmb30"]
 
 [node name="Main" type="Node2D"]
 
