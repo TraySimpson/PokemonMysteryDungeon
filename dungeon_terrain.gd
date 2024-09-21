@@ -27,6 +27,8 @@ const WALL_TILE: Vector2 = Vector2(1 + (0 * 6), 1)
 const WATER_TILE: Vector2 = Vector2(1 + (1 * 6), 1)
 const FLOOR_TILE: Vector2 = Vector2(1 + (2 * 6), 1)
 
+var rng := RandomNumberGenerator.new()
+
 func _ready() -> void:
 	ground_layer.tile_set = tileset
 	await create_dungeon()
@@ -38,7 +40,29 @@ func create_dungeon() -> void:
 		for y in range(map_height):
 			var tile = get_atlas_coords(x, y)
 			ground_layer.set_cell(Vector2(x, y), tileset.get_source_id(0), tile)
-	fill_room(Vector2(10, 5), Vector2(6, 19))
+	
+	# Create rooms
+	var room_count = get_room_count()
+	var region_width = (map_width - 4) / regions_horizontal
+	var region_height = (map_height - 4) / regions_vertical
+	if (region_width < MIN_ROOM_WIDTH):
+		printerr("Region width cannot be smaller than MIN_ROOM_WIDTH")
+	if (region_height < MIN_ROOM_HEIGHT):
+		printerr("Region width cannot be smaller than MIN_ROOM_HEIGHT")
+	for m in range(regions_horizontal):
+		for n in range(regions_vertical):
+			fill_room(Vector2(m * region_width + 2, n * region_height + 2), Vector2(5, 4))
+	
+	
+func get_room_count() -> int:
+	var rooms = 2
+	if room_density < 0:
+		rooms = abs(room_density)
+	else:
+		rooms = rng.randi_range(abs(room_density) - 1, abs(room_density) + 1)
+	if rooms < 2:
+		rooms = 2
+	return rooms
 
 func fill_room(start_point: Vector2i, size: Vector2i) -> void:
 	for x in range(size.x):
