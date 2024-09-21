@@ -12,3 +12,5 @@ position = Vector2(526, 319)
 
 [node name="DungeonTerrain" parent="." instance=ExtResource("2_u313e")]
 tileset = ExtResource("2_xmb30")
+map_width = 56
+map_height = 32
