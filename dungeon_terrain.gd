@@ -53,7 +53,14 @@ func create_dungeon() -> void:
 		for n in range(regions_vertical):
 			fill_room(Vector2(m * region_width + 2, n * region_height + 2), Vector2(5, 4))
 	
+	# Create corridors
+	for m in range(regions_horizontal):
+		for n in range(regions_vertical):
+			var corridors_to_add = get_corridors_to_add(m, n)
 	
+func get_corridors_to_add(m: int, n: int) -> Array:
+	return []
+
 func get_room_count() -> int:
 	var rooms = 2
 	if room_density < 0:
